@@ -1,0 +1,21 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-forward-auth
+  namespace: kube-system
+
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`auth.mydomain.io`)
+      middlewares:
+        - name: traefik-forward-auth
+          namespace: kube-system
+      services:
+        - name: traefik-forward-auth
+          port: 80
+  tls:
+    certResolver: godaddy

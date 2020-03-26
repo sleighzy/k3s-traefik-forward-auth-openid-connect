@@ -1,0 +1,72 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  namespace: kube-system
+  name: traefik-forward-auth
+  labels:
+    app: traefik-forward-auth
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: traefik-forward-auth
+  template:
+    metadata:
+      labels:
+        app: traefik-forward-auth
+    spec:
+      containers:
+        - name: traefik-forward-auth
+          image: thomseddon/traefik-forward-auth
+          ports:
+            - name: http
+              containerPort: 4181
+          env:
+            - name: PROVIDERS_OIDC_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: traefik-forward-auth
+                  key: PROVIDERS_OIDC_CLIENT_SECRET
+            - name: SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: traefik-forward-auth
+                  key: SECRET
+            - name: DEFAULT_PROVIDER
+              valueFrom:
+                configMapKeyRef:
+                  name: traefik-forward-auth
+                  key: DEFAULT_PROVIDER
+            - name: PROVIDERS_OIDC_ISSUER_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: traefik-forward-auth
+                  key: PROVIDERS_OIDC_ISSUER_URL
+            - name: PROVIDERS_OIDC_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: traefik-forward-auth
+                  key: PROVIDERS_OIDC_CLIENT_ID
+            - name: INSECURE_COOKIE
+              valueFrom:
+                configMapKeyRef:
+                  name: traefik-forward-auth
+                  key: INSECURE_COOKIE
+            - name: COOKIE_DOMAIN
+              valueFrom:
+                configMapKeyRef:
+                  name: traefik-forward-auth
+                  key: COOKIE_DOMAIN
+            - name: DOMAINS
+              valueFrom:
+                configMapKeyRef:
+                  name: traefik-forward-auth
+                  key: DOMAINS
+            - name: AUTH_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: traefik-forward-auth
+                  key: AUTH_HOST
+            
