@@ -169,7 +169,7 @@ spec:
         - name: traefik-forward-auth
           namespace: kube-system
       services:
-        - name: traefik-forward-auth
+        - name: whoami
           port: 80
   tls:
     certResolver: godaddy
