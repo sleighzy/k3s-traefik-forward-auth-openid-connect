@@ -16,10 +16,21 @@ spec:
     metadata:
       labels:
         app: traefik-forward-auth
+      annotations:
+        container.apparmor.security.beta.kubernetes.io/traefik-forward-auth: runtime/default
     spec:
       containers:
         - name: traefik-forward-auth
           image: thomseddon/traefik-forward-auth
+          imagePullPolicy: Always
+          securityContext:
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65534
+            runAsGroup: 65534
+            capabilities:
+              drop:
+                - ALL
           ports:
             - name: http
               containerPort: 4181
@@ -69,4 +80,3 @@ spec:
                 configMapKeyRef:
                   name: traefik-forward-auth
                   key: AUTH_HOST
-            
