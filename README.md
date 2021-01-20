@@ -69,7 +69,10 @@ Keycloak. They are based on the following assumptions:
 - that you have a user, or some form of identity, that you can authenticate with
   Keycloak
 
-_WIP: Provide GitHub repository for my Kubernetes deployment of Keycloak._
+The
+[k3s-keycloak-deployment](https://github.com/sleighzy/k3s-keycloak-deployment)
+repository contains my manifest files and instructions for deploying Keycloak on
+K3s.
 
 ## Traefik OpenID Connect Delegated Authentication Service
 
