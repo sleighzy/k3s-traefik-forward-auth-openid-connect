@@ -89,3 +89,8 @@ spec:
                 configMapKeyRef:
                   name: traefik-forward-auth
                   key: AUTH_HOST
+            - name: URL_PATH
+              valueFrom:
+                configMapKeyRef:
+                  name: traefik-forward-auth
+                  key: URL_PATH

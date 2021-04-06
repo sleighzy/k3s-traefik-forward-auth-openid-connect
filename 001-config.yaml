@@ -9,6 +9,7 @@ data:
   COOKIE_DOMAIN: mydomain.io
   DOMAINS: mydomain.io
   AUTH_HOST: auth.mydomain.io
+  URL_PATH: /_oauth
   DEFAULT_PROVIDER: oidc
   PROVIDERS_OIDC_ISSUER_URL: https://keycloak.mydomain.io/auth/realms/master
   PROVIDERS_OIDC_CLIENT_ID: traefik-forward-auth
