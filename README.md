@@ -194,6 +194,10 @@ Credits to the following for getting this going:
 - <https://geek-cookbook.funkypenguin.co.nz/ha-docker-swarm/traefik-forward-auth/keycloak/> -
   blog post on integrating with Keycloak using Traefik 1.7 and the funkypenguin
   fork of the traefik-forward-auth service
+  
+## License
+
+[![MIT license]](https://lbesson.mit-license.org/)
 
 [001-config.yaml]: ./001-config.yaml
 [001-secrets.yaml]: ./001-secrets.yaml
@@ -208,6 +212,7 @@ Credits to the following for getting this going:
 [keycloak-config]: ./assets/keycloak-config.png
 [kubernetes crd ingress controller]:
   https://docs.traefik.io/routing/providers/kubernetes-crd/
+[mit license]: https://img.shields.io/badge/License-MIT-blue.svg
 [openid connect]: https://openid.net/connect/
 [traefik]: https://containo.us/traefik/
 [`traefik-forward-auth`]: https://github.com/thomseddon/traefik-forward-auth
