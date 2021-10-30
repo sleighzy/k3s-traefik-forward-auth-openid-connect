@@ -116,6 +116,18 @@ Refer to the documentation on
 and their values based on the configuration in the [001-config.yaml] file in
 this repository.
 
+### Middlewares
+
+The forward authentication middleware can be configured at a "global" level,
+for example within the same namespace as the Traefik deployment. This can then
+be referenced by ingress/ingressroutes in other namespaces.
+
+In Traefik v2.3 a change was made so that by default it was not possible to
+reference resources in other namespaces. To enable this the Traefik
+`providers.kubernetescrd.allowCrossNamespace` configuration property needs to
+be set to a value of `true`. If this is not set to `true` then ingresses in
+other namespaces will not be able to reference this "global" middleware.
+
 ### Deployment
 
 Apply the manifests in order (prefixed by number) to install the secrets,
