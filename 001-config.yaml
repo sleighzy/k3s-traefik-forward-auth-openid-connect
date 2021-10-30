@@ -11,5 +11,5 @@ data:
   AUTH_HOST: auth.mydomain.io
   URL_PATH: /_oauth
   DEFAULT_PROVIDER: oidc
-  PROVIDERS_OIDC_ISSUER_URL: https://keycloak.mydomain.io/auth/realms/master
+  PROVIDERS_OIDC_ISSUER_URL: https://keycloak.mydomain.io/auth/realms/homelab
   PROVIDERS_OIDC_CLIENT_ID: traefik-forward-auth

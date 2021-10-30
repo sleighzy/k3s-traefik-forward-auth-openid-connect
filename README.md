@@ -108,18 +108,36 @@ OWUwNTBmZTM5ODQwNjE1NzJmZGE1ZjQ2NGE4YjVkOTgK
 ### Configuration
 
 The [001-config.yaml] file needs to be updated with the configuration for your
-OIDC provider and other information.
+OIDC provider and other information. In the example configuration a Keycloak
+realm named `homelab` is used.
 
 Refer to the documentation on
 <https://github.com/thomseddon/traefik-forward-auth> as to what the items are
 and their values based on the configuration in the [001-config.yaml] file in
 this repository.
 
+### Middlewares
+
+The forward authentication middleware can be configured at a "global" level,
+for example within the same namespace as the Traefik deployment. This can then
+be referenced by ingress/ingressroutes in other namespaces.
+
+In Traefik v2.3 a change was made so that by default it was not possible to
+reference resources in other namespaces. To enable this the Traefik
+`providers.kubernetescrd.allowCrossNamespace` configuration property needs to
+be set to a value of `true`. If this is not set to `true` then ingresses in
+other namespaces will not be able to reference this "global" middleware.
+
 ### Deployment
 
 Apply the manifests in order (prefixed by number) to install the secrets,
 config, deployment and ingress route for the [`traefik-forward-auth`] delegated
 authentication service.
+
+The example configuration is using the original `thomseddon/traefik-forward-auth`
+Docker image. I have provided the [`sleighzy/traefik-forward-auth`] image within
+Docker Hub which offers arm64 support for systems such as Raspberry Pi and the
+macOS M1 Apple Silicon chip that can be used instead.
 
 ## Ingress vs IngresssRoute
 
@@ -214,5 +232,7 @@ Credits to the following for getting this going:
   https://docs.traefik.io/routing/providers/kubernetes-crd/
 [mit license]: https://img.shields.io/badge/License-MIT-blue.svg
 [openid connect]: https://openid.net/connect/
+[`sleighzy/traefik-forward-auth`]:
+  https://hub.docker.com/r/sleighzy/traefik-forward-auth
 [traefik]: https://containo.us/traefik/
 [`traefik-forward-auth`]: https://github.com/thomseddon/traefik-forward-auth
